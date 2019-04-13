@@ -1,0 +1,19 @@
+[cache]
+
+	;
+	;
+	;
+
+	disabled = false
+
+	;
+	;
+	;
+
+	class = Stash\Driver\FileSystem
+
+	;
+	;
+	;
+
+	path = storage/cache/data

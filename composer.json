@@ -1,0 +1,27 @@
+{
+    "name": "hiraeth/harmony",
+    "description": "Caching provided by Stash for the Hiraeth Nano Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":  "Matthew J. Sahagian",
+            "email": "matthew.sahagian@gmail.com",
+            "role":  "Lead Architect / Developer"
+        }
+    ],
+    "require": {
+        "hiraeth/caching": "^1.0",
+        "tedivm/stash": "^0.15.0"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "type": "opus-package",
+    "extra": {
+        "opus": {
+            "hiraeth/app": {
+                "config": ""
+            }
+        }
+    }
+}
