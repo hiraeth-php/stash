@@ -7,7 +7,7 @@
 	;
 
 	aliases = {
-		"Hiraeth\Caching\PoolManagerInterface": "Hiraeth\Stash\PoolManager"
+
 	}
 
 	;
