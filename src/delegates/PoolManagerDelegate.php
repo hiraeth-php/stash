@@ -59,9 +59,12 @@ class PoolManagerDelegate implements Hiraeth\Delegate
 					$caches[] = $this->caches[$collection];
 				}
 
-				$manager->add($name, new Stash\Pool(new Stash\Driver\Composite([
-					'drivers' => $caches + [$ephemeral]
-				])));
+
+				$stack = new Stash\Driver\Composite(['drivers' => $caches + [$ephemeral]]);
+				$pool  = new Stash\Pool($stack);
+
+				$pool->setNamespace($name);
+				$manager->add($name, $pool);
 			}
 		}
 
