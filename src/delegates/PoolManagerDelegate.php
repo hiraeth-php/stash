@@ -38,68 +38,33 @@ class PoolManagerDelegate implements Hiraeth\Delegate
 	 */
 	public function __invoke(Hiraeth\Application $app): object
 	{
-		$manager   = new Hiraeth\Caching\PoolManager();
-		$ephemeral = new Stash\Driver\Ephemeral;
+		$manager = new Hiraeth\Caching\PoolManager();
 
-		foreach ($app->getConfig('*', 'caching.pools', []) as $collection => $pools) {
+		foreach ($app->getConfig('*', 'cache', []) as $path => $config) {
+			if (isset($config['class'])) {
+				$drivers = array(new Stash\Driver\Ephemeral);
+				$name    = basename($path);
 
-			if (!$pools) {
-				continue;
-			}
+				if ($manager->has($name)) {
 
-			foreach (array_keys($pools) as $name) {
-				$caches      = array();
-				$collections = $app->getConfig($collection, 'caching.pools.' . $name, []);
-
-				foreach ($collections as $collection) {
-					if (!isset($this->caches[$collection])) {
-						$this->caches[$collection] = $this->createCache($collection, $app);
-					}
-
-					$caches[] = $this->caches[$collection];
 				}
 
+				if (!$config['disabled'] ?? TRUE) {
+					if (isset($config['path'])) {
+						$config['path'] = $app->getDirectory($config['path'], TRUE)->getRealPath();
+					}
 
-				$stack = new Stash\Driver\Composite(['drivers' => $caches + [$ephemeral]]);
-				$pool  = new Stash\Pool($stack);
+					$drivers[] = new $config['class']($config);
+				}
 
-				$pool->setNamespace($name);
+				$stack  = new Stash\Driver\Composite(['drivers' => $drivers + [$ephemeral]]);
+				$pool   = new Stash\Pool($stack);
+
 				$manager->add($name, $pool);
+				$pool->setNamespace($name);
 			}
 		}
 
 		return $app->share($manager);
 	}
-
-
-	/**
-	 *
-	 */
-	protected function createCache($cache, $app)
-	{
-		$config = $app->getConfig($cache, 'cache', NULL);
-
-		if (!$config) {
-			//
-			// Throw an Exception
-			//
-		}
-
-		if (empty($config['class'])) {
-			//
-			// Throw an Exception
-			//
-		}
-
-		if ($config['disabled'] ?? TRUE) {
-			return NULL;
-		}
-
-		if (isset($config['path'])) {
-			$config['path'] = $app->getDirectory($config['path'], TRUE)->getRealPath();
-		}
-
-		return new $config['class']($config);
-	}
-
 }
