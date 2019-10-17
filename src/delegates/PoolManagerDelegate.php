@@ -38,12 +38,13 @@ class PoolManagerDelegate implements Hiraeth\Delegate
 	 */
 	public function __invoke(Hiraeth\Application $app): object
 	{
-		$manager = new Hiraeth\Caching\PoolManager();
+		$manager   = new Hiraeth\Caching\PoolManager();
+		$ephemeral = new Stash\Driver\Ephemeral();
 
 		foreach ($app->getConfig('*', 'cache', []) as $path => $config) {
 			if (isset($config['class'])) {
-				$drivers = array(new Stash\Driver\Ephemeral);
 				$name    = basename($path);
+				$drivers = array();
 
 				if ($manager->has($name)) {
 
