@@ -16,4 +16,10 @@
 	;
 	;
 
-	path = storage/cache/data
+	[&.options]
+
+		;
+		;
+		;
+
+		path = storage/cache/data

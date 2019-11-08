@@ -55,7 +55,7 @@ class PoolManagerDelegate implements Hiraeth\Delegate
 						$config['path'] = $app->getDirectory($config['path'], TRUE)->getRealPath();
 					}
 
-					$drivers[] = new $config['class']($config);
+					$drivers[] = new $config['class']($config['options'] ?? []);
 				}
 
 				$stack  = new Stash\Driver\Composite(['drivers' => $drivers + [$ephemeral]]);
