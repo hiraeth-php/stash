@@ -44,6 +44,7 @@ class PoolManagerDelegate implements Hiraeth\Delegate
 		foreach ($app->getConfig('*', 'cache', []) as $path => $config) {
 			if (isset($config['class'])) {
 				$name    = basename($path);
+				$options = $config['options'] ?? [];
 				$drivers = array();
 
 				if ($manager->has($name)) {
@@ -51,11 +52,11 @@ class PoolManagerDelegate implements Hiraeth\Delegate
 				}
 
 				if (!$config['disabled'] ?? TRUE) {
-					if (isset($config['path'])) {
-						$config['path'] = $app->getDirectory($config['path'], TRUE)->getRealPath();
+					if (isset($options['path'])) {
+						$options['path'] = $app->getDirectory($options['path'], TRUE)->getRealPath();
 					}
 
-					$drivers[] = new $config['class']($config['options'] ?? []);
+					$drivers[] = new $config['class']($options);
 				}
 
 				$stack  = new Stash\Driver\Composite(['drivers' => $drivers + [$ephemeral]]);
