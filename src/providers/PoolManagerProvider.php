@@ -58,5 +58,7 @@ class PoolManagerProvider implements Hiraeth\Provider
 				$pool->setNamespace($name);
 			}
 		}
+
+		return $instance;
 	}
 }
