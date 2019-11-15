@@ -22,4 +22,4 @@
 		;
 		;
 
-		path = storage/cache/data
+		path = dir(storage/cache/data)
