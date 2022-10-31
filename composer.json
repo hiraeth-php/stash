@@ -12,17 +12,17 @@
         }
     ],
     "provide": {
-        "hiraeth/caching-imp": "^1.0"
-    },
-    "require": {
-        "hiraeth/caching": "^1.0",
-        "tedivm/stash": "^0.15.0"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^0.11.19"
+        "hiraeth/caching-imp": "^2.0"
     },
     "autoload": {
         "classmap": ["src/"]
+    },
+    "require": {
+        "hiraeth/caching": "^2.0",
+        "tedivm/stash": "^0.17.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.0"
     },
     "type": "opus-package",
     "extra": {
@@ -30,6 +30,11 @@
             "hiraeth/app": {
                 "config": ""
             }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "imarc/opus": true
         }
     }
 }

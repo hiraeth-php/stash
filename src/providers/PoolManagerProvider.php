@@ -25,6 +25,8 @@ class PoolManagerProvider implements Hiraeth\Provider
 
 	/**
 	 * {@inheritDoc}
+	 *
+	 * @param Caching\PoolManager $instance
 	 */
 	public function __invoke(object $instance, Hiraeth\Application $app): object
 	{
