@@ -10,7 +10,7 @@
 	;
 	;
 
-	class = Stash\Driver\FileSystem
+	class = Symfony\Component\Cache\Adapter\FilesystemAdapter
 
 	;
 	;

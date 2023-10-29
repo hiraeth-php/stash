@@ -19,7 +19,7 @@
     },
     "require": {
         "hiraeth/caching": "^3.0",
-        "tedivm/stash": "^0.17"
+        "symfony/cache": "^7.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.0",
