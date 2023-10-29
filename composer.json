@@ -12,17 +12,18 @@
         }
     ],
     "provide": {
-        "hiraeth/caching-imp": "^2.0"
+        "hiraeth/caching-imp": "^3.0"
     },
     "autoload": {
         "classmap": ["src/"]
     },
     "require": {
-        "hiraeth/caching": "^2.0",
-        "tedivm/stash": "^0.17.0"
+        "hiraeth/caching": "^3.0",
+        "tedivm/stash": "^0.17"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.0"
+        "phpstan/phpstan": "^1.0",
+	"phpunit/phpunit": "^10.0"
     },
     "type": "opus-package",
     "extra": {
