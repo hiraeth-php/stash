@@ -15,6 +15,7 @@
         "hiraeth/caching-imp": "^1.0"
     },
     "require": {
+        "hiraeth/app": "^1.0",
         "hiraeth/caching": "^1.0",
         "tedivm/stash": "^0.15.0"
     },
