@@ -18,6 +18,7 @@
         "classmap": ["src/"]
     },
     "require": {
+        "hiraeth/app": "^2.0",
         "hiraeth/caching": "^2.0",
         "tedivm/stash": "^0.17.0"
     },
